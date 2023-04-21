@@ -15,11 +15,11 @@ namespace prog
       Color(rgb_value r, rgb_value g, rgb_value b);
       // value getters 
       rgb_value red() const;
-      rgb_value& red();
+      rgb_value blue() const;
       rgb_value green() const;
       // value mutators
       rgb_value& green();
-      rgb_value blue() const;
+      rgb_value& red();
       rgb_value& blue();
   };
 }
