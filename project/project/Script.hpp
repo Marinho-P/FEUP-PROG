@@ -27,6 +27,7 @@ namespace prog
     void invert();
     void to_gray_scale();
     void v_mirror();
+    void h_mirror();
   };
 }
 #endif

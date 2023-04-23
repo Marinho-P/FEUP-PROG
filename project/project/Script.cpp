@@ -61,6 +61,10 @@ namespace prog {
                 v_mirror();
                 continue;
             }
+            if(command == "h_mirror"){
+                h_mirror();
+                continue;
+            }
 
         }
     }
@@ -128,5 +132,20 @@ namespace prog {
             }
         }
     }
+    void Script:: h_mirror(){
+        int width = image->width();
+        int height = image->height();
+        for( int x = 0; x<width/2;x++){
+            for(int y= 0; y < height;y++){
+                Color pixel1 = image->at(x,y);
+                Color pixel2 = image->at(width -1 -x,y);
+                image->at(x,y) = pixel2;
+                image->at(width -1 -x,y) = pixel1;
+
+            }
+        }
+
+    }
+    
 }
 
