@@ -28,6 +28,7 @@ namespace prog
     void to_gray_scale();
     void v_mirror();
     void h_mirror();
+    void replace(unsigned char r1,unsigned char g1,unsigned char b1,unsigned char r2,unsigned char g2,unsigned char b2);
   };
 }
 #endif
