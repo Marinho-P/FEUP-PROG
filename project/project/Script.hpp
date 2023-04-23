@@ -32,7 +32,8 @@ namespace prog
     void fill(int x , int y , int w , int h , unsigned char r , unsigned char g , unsigned char b);
     void add(std::string filename, unsigned char r , unsigned char g , unsigned char b , int x , int y);
     void crop(int x,int y,int w,int h);
-
+    void rotate_left();
+    void rotate_right();
   };
 }
 #endif
