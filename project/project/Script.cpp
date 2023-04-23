@@ -87,6 +87,12 @@ namespace prog {
                 input >> x >> y >> w >> h;
                 crop(x,y,w,h);
             }
+            if ( command == "rotate_left"){
+                rotate_left();
+            }
+            if ( command == "rotate_right"){
+                rotate_right();
+            }
 
         }
     }
@@ -214,7 +220,31 @@ namespace prog {
     }
     delete image;
     image = cropped;
-}
+    }
+    void Script::rotate_left(){
+        int width = image->width();
+        int height = image->height();
+        Image* rotate_to_left = new Image(height, width);
+        for ( int x = 0; x < height ; x++){
+            for (int y = 0 ;  y < width; y++){
+                rotate_to_left->at(x,y) = image->at(width - y -1 ,x);
+            }
+        }
+        delete image;
+        image = rotate_to_left;
+    }
+    void Script::rotate_right(){
+        int width = image->width();
+        int height = image->height();
+        Image* rotate_to_rigth = new Image(height, width);
+        for ( int x = 0; x < height ; x++){
+            for (int y = 0 ;  y < width; y++){
+                rotate_to_rigth->at(x,y) = image->at(y,height-x-1);
+            }
+        }
+        delete image;
+        image = rotate_to_rigth;
+    }
 
 }
 
