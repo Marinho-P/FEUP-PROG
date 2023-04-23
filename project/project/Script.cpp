@@ -65,6 +65,12 @@ namespace prog {
                 h_mirror();
                 continue;
             }
+            if (command == "replace"){
+                int r1,g1,b1,r2,g2,b2;
+                input >> r1 >> g1 >> b1 >> r2 >> g2 >> b2;
+                replace(r1,g1,b1,r2,g2,b2);
+                continue;
+            }
 
         }
     }
@@ -141,6 +147,19 @@ namespace prog {
                 Color pixel2 = image->at(width -1 -x,y);
                 image->at(x,y) = pixel2;
                 image->at(width -1- x,y) = pixel1;
+            }
+        }
+    }
+    void Script::replace( unsigned char r1,unsigned char g1,unsigned char b1,unsigned char r2,unsigned char g2,unsigned char b2){
+        Color pixel_replace = {r2,g2,b2};
+        int width = image->width();
+        int height = image->height();
+        for ( int x = 0 ; x < width ; x++){
+            for ( int y = 0 ; y < height ; y++){
+                Color pixel = image->at(x,y);
+                if ( (pixel.red() == r1) && (pixel.green() == g1) && (pixel.blue() == b1)){
+                    image->at(x,y) = pixel_replace;
+                }
             }
         }
     }
