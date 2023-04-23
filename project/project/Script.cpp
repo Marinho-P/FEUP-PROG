@@ -82,6 +82,11 @@ namespace prog {
                 input >> filename >> r >> g >> b >> x >> y;;
                 add(filename,r,g,b,x,y);
             }
+            if(command == "crop"){
+                int x,y,w,h;
+                input >> x >> y >> w >> h;
+                crop(x,y,w,h);
+            }
 
         }
     }
@@ -200,5 +205,16 @@ namespace prog {
         }
         delete image_fill;
     }
+    void Script::crop(int x, int y, int w, int h) {
+    Image* cropped = new Image(w, h);
+    for (int i = 0; i < w; i++) {
+        for (int j = 0; j < h; j++) {
+            cropped->at(i, j) = image->at(x + i, y + j);
+        }
+    }
+    delete image;
+    image = cropped;
+}
+
 }
 
