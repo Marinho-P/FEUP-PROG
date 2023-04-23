@@ -71,6 +71,11 @@ namespace prog {
                 replace(r1,g1,b1,r2,g2,b2);
                 continue;
             }
+            if ( command == "fill"){
+                int x,y,w,h,r,g,b;
+                input >> x >> y >> w >> h >> r >> g >> b;
+                fill(x,y,w,h,r,g,b);
+            }
 
         }
     }
@@ -160,6 +165,14 @@ namespace prog {
                 if ( (pixel.red() == r1) && (pixel.green() == g1) && (pixel.blue() == b1)){
                     image->at(x,y) = pixel_replace;
                 }
+            }
+        }
+    }
+    void Script::fill(int x , int y , int w , int h , unsigned char r , unsigned char g , unsigned char b){
+        Color fill_with = {r,g,b};
+        for (int x_ = x ; x_ < x + w ; x_++){
+            for ( int y_ = y ; y_ < y + h ; y_++){
+                image->at(x_,y_) = fill_with;
             }
         }
     }
