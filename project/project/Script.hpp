@@ -29,6 +29,7 @@ namespace prog
     void v_mirror();
     void h_mirror();
     void replace(unsigned char r1,unsigned char g1,unsigned char b1,unsigned char r2,unsigned char g2,unsigned char b2);
+    void fill(int x , int y , int w , int h , unsigned char r , unsigned char g , unsigned char b);
   };
 }
 #endif
