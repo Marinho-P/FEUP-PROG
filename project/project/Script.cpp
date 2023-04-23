@@ -76,6 +76,12 @@ namespace prog {
                 input >> x >> y >> w >> h >> r >> g >> b;
                 fill(x,y,w,h,r,g,b);
             }
+            if ( command == "add"){
+                string filename;
+                int r,g,b,x,y;
+                input >> filename >> r >> g >> b >> x >> y;;
+                add(filename,r,g,b,x,y);
+            }
 
         }
     }
@@ -175,6 +181,24 @@ namespace prog {
                 image->at(x_,y_) = fill_with;
             }
         }
+    }
+    void Script::add(string filename, unsigned char r , unsigned char g , unsigned char b , int x , int y){
+        int i = 0 , j = 0; // coordenadas da nova imagem para dar "copypaste"
+        Image* image_fill = loadFromPNG(filename);
+        int width = image_fill->width();
+        int height = image_fill->height();
+        for (int x_ = x ; x_ < width + x ; x_++){
+            for (int y_ = y ; y_ < height + y ; y_++){
+                Color pixel = image_fill->at(i,j);
+                if (pixel.red() != r || pixel.green() != g || pixel.blue() != b){
+                    image->at(x_,y_) = pixel;
+                }
+                j++;
+            }
+            i++;
+            j = 0; // dar reset na height da imagem a ser "printed"
+        }
+        delete image_fill;
     }
 }
 
