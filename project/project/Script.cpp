@@ -75,23 +75,32 @@ namespace prog {
                 int x,y,w,h,r,g,b;
                 input >> x >> y >> w >> h >> r >> g >> b;
                 fill(x,y,w,h,r,g,b);
+                continue;
             }
             if ( command == "add"){
                 string filename;
                 int r,g,b,x,y;
                 input >> filename >> r >> g >> b >> x >> y;;
                 add(filename,r,g,b,x,y);
+                continue;
             }
             if(command == "crop"){
                 int x,y,w,h;
                 input >> x >> y >> w >> h;
                 crop(x,y,w,h);
+                continue;
             }
             if ( command == "rotate_left"){
                 rotate_left();
+                continue;
             }
             if ( command == "rotate_right"){
                 rotate_right();
+                continue;
+            }
+            if ( command == "xpm2_open"){
+                xpm2_open();
+                continue;
             }
 
         }
@@ -102,6 +111,12 @@ namespace prog {
         string filename;
         input >> filename;
         image = loadFromPNG(filename);
+    }
+    void Script::xpm2_open(){
+        clear_image_if_any();
+        string filename;
+        input >> filename;
+        image = loadFromXPM2(filename);
     }
     void Script::blank() {
         // Replace current image (if any) with blank image.
