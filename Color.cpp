@@ -35,4 +35,7 @@ namespace prog {
     rgb_value& Color::blue()  {
       return blue_;
     }
+    bool Color :: operator==(const Color& Color2){
+        return (red_==Color2.red()) && (green_==Color2.green()) && (blue_==Color2.blue());
+    }
 }
