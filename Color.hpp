@@ -21,6 +21,8 @@ namespace prog
       rgb_value& green();
       rgb_value& red();
       rgb_value& blue();
+      //for iterator
+      bool operator==(const Color& Color2);
   };
 }
 #endif
