@@ -7,6 +7,8 @@
 # include <string>
 # include <sstream>
 # include <unordered_map>
+# include <iomanip>
+# include <algorithm>
 
 namespace prog {
     Image* loadFromXPM2(const std::string &file);
