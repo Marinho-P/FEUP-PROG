@@ -9,6 +9,7 @@
 # include <unordered_map>
 # include <iomanip>
 # include <algorithm>
+# include <vector>
 
 namespace prog {
     Image* loadFromXPM2(const std::string &file);
