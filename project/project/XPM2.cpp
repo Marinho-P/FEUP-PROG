@@ -36,7 +36,33 @@ namespace prog {
         return image;
     }
 
-    void saveToXPM2(const std::string& file, const Image* image) {
+   void saveToXPM2(const std::string& file, const Image* image) {
+        std:: ofstream output(file); // stream for header and values,later stitched with colors and bitmap to become complete
+        std:: stringstream colors; // stream for colors
+        std:: stringstream bitmap; // stream for bitmap
+        output << "! XPM2" << std::endl; // header
+        int width = image->width();
+        int height = image->height();
+        std:: vector<Color> char_colors;
+        for(int y = 0; y< height;y++){
+            for(int x = 0;x < width ;x++ ){
+                Color pixel = image->at(x,y);
+                if(std::find(char_colors.begin(),char_colors.end(),pixel) != char_colors.end()){ // if in vector
+                    bitmap << (char) (std::distance(char_colors.begin(),std::find(char_colors.begin(),char_colors.end(),pixel)) + 33); // add char to bitmap based on index of vector
+                }
+                else{
+                    char_colors.push_back(pixel); // add new color to vector
+                    colors << (char)(char_colors.size() - 1 + 33)  << " c #" << std::setw(2) << std::setfill('0')<< std:: hex << (int)pixel.red() << std:: hex <<std::setw(2) << std::setfill('0')<< (int)pixel.green() << std:: hex <<std::setw(2) << std::setfill('0')<< (int)pixel.blue() << std::endl; //color
+                    bitmap << (char)(char_colors.size() - 1 + 33); // add char to bitmap, guaranteed to be last in vector
+                }
+            }
+            bitmap << std::endl;
+        }
+        output << width << " " << height << " " << char_colors.size() << " 1" << std::endl; //values
+        output << colors.str();//stitch colors to output
+        output << bitmap.str();// stitch bitmap to output
+        output << std:: flush;
+        
         return;
     }
 }
