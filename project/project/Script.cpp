@@ -109,6 +109,11 @@ namespace prog {
                 median_filter(ws);
                 continue;
             }
+            if( command == "xpm2_save"){
+                xpm2_save();
+                continue;
+            }
+
 
         }
     }
@@ -124,6 +129,11 @@ namespace prog {
         string filename;
         input >> filename;
         image = loadFromXPM2(filename);
+    }
+    void Script :: xpm2_save(){
+        string filename;
+        input >> filename;
+        saveToXPM2(filename,image);
     }
     void Script::blank() {
         // Replace current image (if any) with blank image.
