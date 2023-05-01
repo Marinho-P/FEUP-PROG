@@ -1,6 +1,9 @@
 #ifndef __prog_Image_hpp__
 #define __prog_Image_hpp__
 #include "Color.hpp"
+#include <string>
+#include <fstream>
+#include <iostream>
 
 namespace prog
 {
@@ -20,6 +23,12 @@ namespace prog
     // pixel acessors / mutator
     Color &at(int x, int y);
     const Color &at(int x, int y) const;
+    void invert();
+    void to_gray_scale();
+    void v_mirror();
+    void h_mirror();
+    void replace(unsigned char r1,unsigned char g1,unsigned char b1,unsigned char r2,unsigned char g2,unsigned char b2);
+    void fill(int x , int y , int w , int h , unsigned char r , unsigned char g , unsigned char b);
   };
 }
 #endif
