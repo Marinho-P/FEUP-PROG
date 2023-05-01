@@ -185,14 +185,7 @@ namespace prog {
         delete image_fill;
     }
     void Script::crop(int x, int y, int w, int h) {
-        Image* cropped = new Image(w, h);
-        for (int i = 0; i < w; i++) {
-            for (int j = 0; j < h; j++) {
-                cropped->at(i, j) = image->at(x + i, y + j);
-            }
-        }
-        delete image;
-        image = cropped;
+        image->crop(x,y,w,h);
     }
     void Script::rotate_left(){
         int width = image->width();
