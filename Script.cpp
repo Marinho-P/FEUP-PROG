@@ -188,28 +188,10 @@ namespace prog {
         image->crop(x,y,w,h);
     }
     void Script::rotate_left(){
-        int width = image->width();
-        int height = image->height();
-        Image* rotate_to_left = new Image(height, width);
-        for ( int x = 0; x < height ; x++){
-            for (int y = 0 ;  y < width; y++){
-                rotate_to_left->at(x,y) = image->at(width - y -1 ,x);
-            }
-        }
-        delete image;
-        image = rotate_to_left;
+       image->rotate_left();
     }
     void Script::rotate_right(){
-        int width = image->width();
-        int height = image->height();
-        Image* rotate_to_rigth = new Image(height, width);
-        for ( int x = 0; x < height ; x++){
-            for (int y = 0 ;  y < width; y++){
-                rotate_to_rigth->at(x,y) = image->at(y,height-x-1);
-            }
-        }
-        delete image;
-        image = rotate_to_rigth;
+        image->rotate_right();
     }
     void Script :: median_filter(int ws){
         rgb_value* redArray = new rgb_value[ws*ws]; 

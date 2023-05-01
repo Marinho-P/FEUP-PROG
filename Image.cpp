@@ -121,5 +121,51 @@ namespace prog
     // Copy the values of the temp_matrix to matrix
     matrix = temp_matrix;
 }
+  void Image::rotate_left(){
+    Color **temp_matrix = new Color*[height_];
+    for ( int i = 0; i < height_ ; i++){
+      temp_matrix[i] = new Color[width_];
+    }
+    for ( int x = 0; x < height_ ; x++){
+        for (int y = 0 ;  y < width_; y++){
+            temp_matrix[x][y] = matrix[width_ - y -1][x];
+        }
+  }
+  // Release the memory from the original matrix
+    for ( int i = 0 ; i < width_ ; i++){
+      delete [] matrix[i];
+    }
+    delete [] matrix;
+    // updated size
+    int update_width = height_;
+    int update_height = width_;
+    width_ = update_width;
+    height_ = update_height;
+    // Copy the values of the temp_matrix to matrix
+    matrix = temp_matrix;
+  }
+  void Image::rotate_right(){
+    Color **temp_matrix = new Color*[height_];
+    for ( int i = 0; i < height_ ; i++){
+      temp_matrix[i] = new Color[width_];
+    }
+    for ( int x = 0; x < height_ ; x++){
+        for (int y = 0 ;  y < width_; y++){
+            temp_matrix[x][y] = matrix[y][height_ -x -1];
+        }
+    }
+    // Release the memory from the original matrix
+    for ( int i = 0 ; i < width_ ; i++){
+      delete [] matrix[i];
+    }
+    delete [] matrix;
+    // updated size
+    int update_width = height_;
+    int update_height = width_;
+    width_ = update_width;
+    height_ = update_height;
+    // Copy the values of the temp_matrix to matrix
+    matrix = temp_matrix;
+  }
 
 }
