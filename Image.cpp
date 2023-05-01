@@ -115,24 +115,11 @@ namespace prog
       delete [] matrix[i];
     }
     delete [] matrix;
-    // Create a new matrix with updated size
+    // updated size
     width_ = w;
     height_ = h;
-    matrix = new Color*[width_];
-    for (int i = 0; i < width_; i++) {
-      matrix[i] = new Color[height_];
-    }
     // Copy the values of the temp_matrix to matrix
-    for (int x_pixel = 0; x_pixel < width_; x_pixel++){
-      for (int y_pixel = 0; y_pixel < height_; y_pixel++){
-        matrix[x_pixel][y_pixel] = temp_matrix[x_pixel][y_pixel];
-    }
-  }
-    // Release memory from temp_matrix
-  for ( int i = 0 ; i < width_ ; i++){
-      delete [] temp_matrix[i];
-    }
-    delete [] temp_matrix;
-  }
+    matrix = temp_matrix;
 }
 
+}
