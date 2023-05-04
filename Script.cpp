@@ -193,55 +193,9 @@ namespace prog {
     void Script::rotate_right(){
         image->rotate_right();
     }
-    void Script :: median_filter(int ws){
-        rgb_value* redArray = new rgb_value[ws*ws]; 
-        rgb_value* greenArray = new rgb_value[ws*ws];
-        rgb_value* blueArray = new rgb_value[ws*ws];
-        int width = image->width();
-        int height = image->height();
-        Image* filtered = new Image(width,height);
-        for(int x = 0; x < width; x++ ){
-            for( int y = 0; y < height; y++){ // iterar nos pixeis da imagem
-            int i = 0;
-                for( int nx = x - ws/2; nx <= x+ ws/2;nx++){
-                    for(int ny = y -ws/2;ny <= y + ws/2; ny++){ // iterar nos pixeis adjacentes
-                        if((nx>= 0) && (nx< width) && (ny>= 0) && (ny<height)){// teste out-of-bounds
-                            redArray[i] = image->at(nx,ny).red();
-                            greenArray[i] = image->at(nx,ny).green();
-                            blueArray[i] = image->at(nx,ny).blue();
-                            i++;
-                            
-                        }
-                        
-                    }
-                } // i = nº elementos 
-                sort(redArray,redArray + i ); // dependencia <algorithm> adicionar <*>
-                sort(greenArray,greenArray + i );
-                sort(blueArray,blueArray + i );
-                for( int k = 0; k< i;k++){
-                }
-                if( i % 2 == 0){ // mediana 
-                    filtered->at(x,y).red() = (redArray[i/2] + redArray[(i/2)-1])/2.0;
-                    filtered->at(x,y).green() = (greenArray[(i/2)] + greenArray[(i/2)-1])/2;
-                    filtered->at(x,y).blue() = (blueArray[(i/2)] + blueArray[(i/2)-1])/2;
-                }
-                else{
-
-                    filtered->at(x,y).red() = redArray[(i-1)/2];
-                    filtered->at(x,y).green() = greenArray[(i-1)/2];
-                    filtered->at(x,y).blue() = blueArray[(i-1)/2];
-                }
-                        
-
-            }
-        }
-        delete image;
-        delete[]redArray;
-        delete[] blueArray;
-        delete[] greenArray;
-        image = filtered;
+   void Script:: median_filter(int ws){
+        image->median_filter(ws);
     }
-
 
 }
 
