@@ -4,7 +4,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-
+#include <algorithm>
 namespace prog
 {
   class Image
