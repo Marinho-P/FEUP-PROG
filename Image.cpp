@@ -167,5 +167,60 @@ namespace prog
     // Copy the values of the temp_matrix to matrix
     matrix = temp_matrix;
   }
+  void Image :: median_filter(int ws){
+        rgb_value* redArray = new rgb_value[ws*ws]; 
+        rgb_value* greenArray = new rgb_value[ws*ws];
+        rgb_value* blueArray = new rgb_value[ws*ws];
+        //create new matrix
+        Color **filtered = new Color*[width_];
+        for ( int i = 0; i < width_ ; i++){
+          filtered[i] = new Color[height_];
+        }
+        
+        for(int x = 0; x < width_; x++ ){
+            for( int y = 0; y < height_; y++){ // iterar nos pixeis da imagem
+            int i = 0;
+                for( int nx = x - ws/2; nx <= x+ ws/2;nx++){
+                    for(int ny = y -ws/2;ny <= y + ws/2; ny++){ // iterar nos pixeis adjacentes
+                        if((nx>= 0) && (nx< width_) && (ny>= 0) && (ny<height_)){// teste out-of-bounds
+                            redArray[i] = matrix[nx][ny].red();
+                            greenArray[i] = matrix[nx][ny].green();
+                            blueArray[i] = matrix[nx][ny].blue();
+                            i++;
+                            
+                        }
+                        
+                    }
+                } // i = nº elementos 
+                std::sort(redArray,redArray + i ); // dependencia <algorithm> adicionar <*>
+                std::sort(greenArray,greenArray + i );
+                std::sort(blueArray,blueArray + i );
+                for( int k = 0; k< i;k++){
+                }
+                if( i % 2 == 0){ // mediana 
+                    filtered[x][y].red() = (redArray[i/2] + redArray[(i/2)-1])/2.0;
+                    filtered[x][y].green() = (greenArray[(i/2)] + greenArray[(i/2)-1])/2;
+                    filtered[x][y].blue() = (blueArray[(i/2)] + blueArray[(i/2)-1])/2;
+                }
+                else{
 
+                    filtered[x][y].red() = redArray[(i-1)/2];
+                    filtered[x][y].green() = greenArray[(i-1)/2];
+                    filtered[x][y].blue() = blueArray[(i-1)/2];
+                }
+                        
+
+            }
+        }
+        // Release the memory from the original matrix
+        for ( int i = 0 ; i < width_ ; i++){
+          delete [] matrix[i];
+        }
+        delete [] matrix;
+        
+        delete[]redArray;
+        delete[] blueArray;
+        delete[] greenArray;
+        matrix = filtered;
+    }
 }
