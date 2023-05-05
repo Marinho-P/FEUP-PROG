@@ -3,12 +3,9 @@
 
 
 #include "Image.hpp"
-# include <fstream>
-# include <string>
 # include <sstream>
 # include <unordered_map>
 # include <iomanip>
-# include <algorithm>
 # include <vector>
 
 namespace prog {

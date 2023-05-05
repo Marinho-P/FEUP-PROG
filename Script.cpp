@@ -167,20 +167,21 @@ namespace prog {
         image->fill(x,y,w,h,r,g,b);
     }
     void Script::add(string filename, unsigned char r , unsigned char g , unsigned char b , int x , int y){
-        int i = 0 , j = 0; // coordenadas da nova imagem para dar "copypaste"
+        Color neutral_pixel = {r,g,b};
+        int new_image_x = 0 , new_image_y = 0; 
         Image* image_fill = loadFromPNG(filename);
         int width = image_fill->width();
         int height = image_fill->height();
         for (int x_ = x ; x_ < width + x ; x_++){
             for (int y_ = y ; y_ < height + y ; y_++){
-                Color pixel = image_fill->at(i,j);
-                if (pixel.red() != r || pixel.green() != g || pixel.blue() != b){
+                Color pixel = image_fill->at(new_image_x,new_image_y);
+                if (!(pixel == neutral_pixel )){
                     image->at(x_,y_) = pixel;
                 }
-                j++;
+                new_image_y++;
             }
-            i++;
-            j = 0; // dar reset na height da imagem a ser "printed"
+            new_image_x++;
+            new_image_y = 0; // go to next column
         }
         delete image_fill;
     }

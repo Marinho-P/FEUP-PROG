@@ -115,10 +115,8 @@ namespace prog
       delete [] matrix[i];
     }
     delete [] matrix;
-    // updated size
     width_ = w;
     height_ = h;
-    // Copy the values of the temp_matrix to matrix
     matrix = temp_matrix;
 }
   void Image::rotate_left(){
@@ -141,7 +139,6 @@ namespace prog
     int update_height = width_;
     width_ = update_width;
     height_ = update_height;
-    // Copy the values of the temp_matrix to matrix
     matrix = temp_matrix;
   }
   void Image::rotate_right(){
@@ -164,7 +161,6 @@ namespace prog
     int update_height = width_;
     width_ = update_width;
     height_ = update_height;
-    // Copy the values of the temp_matrix to matrix
     matrix = temp_matrix;
   }
   void Image :: median_filter(int ws){
@@ -178,26 +174,26 @@ namespace prog
         }
         
         for(int x = 0; x < width_; x++ ){
-            for( int y = 0; y < height_; y++){ // iterar nos pixeis da imagem
+            for( int y = 0; y < height_; y++){ // iterate over the pixels in the image
             int i = 0;
                 for( int nx = x - ws/2; nx <= x+ ws/2;nx++){
-                    for(int ny = y -ws/2;ny <= y + ws/2; ny++){ // iterar nos pixeis adjacentes
-                        if((nx>= 0) && (nx< width_) && (ny>= 0) && (ny<height_)){// teste out-of-bounds
+                    for(int ny = y -ws/2;ny <= y + ws/2; ny++){ // iterate over the adjacent pixels
+                        if((nx>= 0) && (nx< width_) && (ny>= 0) && (ny<height_)){// test if in bounds
                             redArray[i] = matrix[nx][ny].red();
                             greenArray[i] = matrix[nx][ny].green();
                             blueArray[i] = matrix[nx][ny].blue();
                             i++;
-                            
+              
                         }
                         
                     }
-                } // i = nº elementos 
-                std::sort(redArray,redArray + i ); // dependencia <algorithm> adicionar <*>
+                } // i = number of elements in each array
+                std::sort(redArray,redArray + i ); 
                 std::sort(greenArray,greenArray + i );
                 std::sort(blueArray,blueArray + i );
                 for( int k = 0; k< i;k++){
                 }
-                if( i % 2 == 0){ // mediana 
+                if( i % 2 == 0){ // median
                     filtered[x][y].red() = (redArray[i/2] + redArray[(i/2)-1])/2.0;
                     filtered[x][y].green() = (greenArray[(i/2)] + greenArray[(i/2)-1])/2;
                     filtered[x][y].blue() = (blueArray[(i/2)] + blueArray[(i/2)-1])/2;
