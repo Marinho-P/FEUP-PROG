@@ -10,19 +10,16 @@ namespace prog
   class Image
   {
   private:
-    Color **matrix; // criar um double pointer para a matrix 
+    Color **matrix; 
     int width_ , height_;
   public:
-    // constructor
     Image(int w, int h, const Color &fill = {255, 255, 255});
-    // deconstructor
     ~Image();
-    // getters
     int width() const;
     int height() const;
-    // pixel acessors / mutator
     Color &at(int x, int y);
     const Color &at(int x, int y) const;
+  public: 
     void invert();
     void to_gray_scale();
     void v_mirror();
