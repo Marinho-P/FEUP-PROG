@@ -9,19 +9,15 @@ namespace prog
     private:
       rgb_value red_ , green_ , blue_; 
     public:
-      // constructors 
-      Color(); // default meaning value (0,0,0)
+      Color(); 
       Color(const Color& c); 
       Color(rgb_value r, rgb_value g, rgb_value b);
-      // value getters 
       rgb_value red() const;
       rgb_value blue() const;
       rgb_value green() const;
-      // value mutators
       rgb_value& green();
       rgb_value& red();
       rgb_value& blue();
-      //for iterator
       bool operator==(const Color& Color2);
   };
 }
