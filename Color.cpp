@@ -38,4 +38,15 @@ namespace prog {
     bool Color :: operator==(const Color& Color2){
         return (red_==Color2.red()) && (green_==Color2.green()) && (blue_==Color2.blue());
     }
+    void Color :: invert(){
+        this->red_ = 255 - red_;
+        this->blue_ = 255 - blue_;
+        this->green_ = 255 - green_;
+    }
+    void Color :: to_gray_scale(){
+        rgb_value average = (red_+blue_+ green_)/3;
+        red_ = average;
+        blue_ = average;
+        green_ = average;
+    }
 }

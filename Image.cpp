@@ -45,8 +45,8 @@ namespace prog
         for ( int x = 0 ; x < width_ ; x++){
             for ( int y = 0 ; y < height_ ; y++){
                 Color pixel = matrix[x][y];
-                Color inverted_pixel = Color(255- pixel.red(), 255 -pixel.green(),255 - pixel.blue());
-                matrix[x][y] = inverted_pixel;
+                pixel.invert();
+                matrix[x][y] = pixel;
             }
       }
   }
@@ -54,9 +54,8 @@ namespace prog
       for ( int x = 0 ; x < width_ ; x++){
             for ( int y = 0 ; y < height_ ; y++){
                 Color pixel = matrix[x][y];
-                unsigned char to_gray_scale = (pixel.red()+pixel.green()+pixel.blue())/3;
-                Color pixel_to_gray_scale = Color(to_gray_scale,to_gray_scale,to_gray_scale);
-                matrix[x][y] = pixel_to_gray_scale;
+                pixel.to_gray_scale();
+                matrix[x][y] = pixel;
           }
       }
   }

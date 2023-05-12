@@ -19,6 +19,8 @@ namespace prog
       rgb_value& red();
       rgb_value& blue();
       bool operator==(const Color& Color2);
+      void invert();
+      void to_gray_scale();
   };
 }
 #endif
