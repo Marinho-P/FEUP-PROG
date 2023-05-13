@@ -162,6 +162,22 @@ namespace prog
     height_ = update_height;
     matrix = temp_matrix;
   }
+  void Image :: add(std::string filename, unsigned char r , unsigned char g , unsigned char b , int x , int y){
+    Color neutral_pixel = {r,g,b};
+    int w, h, dummy;
+    rgb_value *buffer = stbi_load(filename.c_str(), &w, &h, &dummy, 3);
+    rgb_value* p = buffer;
+    for (int new_image_y = y; new_image_y < y+h; new_image_y++) {
+        for (int new_image_x = x; new_image_x < x+w; new_image_x++) {
+            Color pixel_to_add = {p[0],p[1],p[2]};
+            if(!( pixel_to_add == neutral_pixel)){
+            matrix[new_image_x][new_image_y] = pixel_to_add;
+            }
+            p += 3;
+        }
+    }
+    stbi_image_free(buffer);
+  }
   void Image :: median_filter(int ws){
         rgb_value* redArray = new rgb_value[ws*ws]; 
         rgb_value* greenArray = new rgb_value[ws*ws];

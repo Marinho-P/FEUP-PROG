@@ -5,6 +5,8 @@
 #include <fstream>
 #include <iostream>
 #include <algorithm>
+#include "stb/stb_image.h"
+
 namespace prog
 {
   class Image
@@ -30,6 +32,7 @@ namespace prog
     void rotate_left();
     void rotate_right();
     void median_filter(int ws);
+    void add(std::string filename, unsigned char r , unsigned char g , unsigned char b , int x , int y);
   };
 }
 #endif

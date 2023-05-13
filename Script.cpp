@@ -167,23 +167,7 @@ namespace prog {
         image->fill(x,y,w,h,r,g,b);
     }
     void Script::add(string filename, unsigned char r , unsigned char g , unsigned char b , int x , int y){
-        Color neutral_pixel = {r,g,b};
-        int new_image_x = 0 , new_image_y = 0; 
-        Image* image_fill = loadFromPNG(filename);
-        int width = image_fill->width();
-        int height = image_fill->height();
-        for (int x_ = x ; x_ < width + x ; x_++){
-            for (int y_ = y ; y_ < height + y ; y_++){
-                Color pixel = image_fill->at(new_image_x,new_image_y);
-                if (!(pixel == neutral_pixel )){
-                    image->at(x_,y_) = pixel;
-                }
-                new_image_y++;
-            }
-            new_image_x++;
-            new_image_y = 0; // go to next column
-        }
-        delete image_fill;
+        image-> add(filename,r,g,b,x,y);
     }
     void Script::crop(int x, int y, int w, int h) {
         image->crop(x,y,w,h);
