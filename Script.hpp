@@ -1,8 +1,5 @@
 #ifndef __prog_Script_hpp__
 #define __prog_Script_hpp__
-
-#include <string>
-#include <fstream>
 #include "Image.hpp"
 
 namespace prog
