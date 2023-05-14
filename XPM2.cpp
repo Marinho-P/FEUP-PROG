@@ -63,6 +63,5 @@ namespace prog {
         output << bitmap.str();// stitch bitmap to output
         output << std:: flush;
         
-        return;
     }
 }
