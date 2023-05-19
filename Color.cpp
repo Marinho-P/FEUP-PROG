@@ -49,4 +49,23 @@ namespace prog {
         blue_ = average;
         green_ = average;
     }
+    void Color:: replace(unsigned char r1,unsigned char g1,unsigned char b1,unsigned char r2,unsigned char g2,unsigned char b2){
+        Color pixel_to_change = {r1,g1,b1};
+        Color pixel_replace = {r2,g2,b2};
+        if(pixel_to_change == *this){
+            *this = pixel_replace; 
+        }
+    }
+    void Color:: fill(unsigned char r,unsigned char g,unsigned char b){
+        red_ = r;
+        blue_ = b;
+        green_ = g;
+    }
+    void Color:: add(rgb_value* &p, unsigned char r,unsigned char g,unsigned char b){
+        Color neutral_pixel = {r,g,b};
+        Color pixel_to_add = {p[0],p[1],p[2]};
+            if(!( pixel_to_add == neutral_pixel)){
+            *this = pixel_to_add;
+            } 
+    }
 }

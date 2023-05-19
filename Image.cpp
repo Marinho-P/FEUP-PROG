@@ -80,22 +80,16 @@ namespace prog
     } 
   }
   void Image::replace(unsigned char r1,unsigned char g1,unsigned char b1,unsigned char r2,unsigned char g2,unsigned char b2){
-    Color pixel_to_change = {r1,g1,b1};
-    Color pixel_replace = {r2,g2,b2};
     for(int x = 0; x <width_;x++){
       for ( int y = 0; y < height_;y++){
-        Color pixel = matrix[x][y];
-        if (pixel == pixel_to_change){
-          matrix[x][y] = pixel_replace;
-        }
+         matrix[x][y].replace(r1,g1,b1,r2,g2,b2);
       }
     }
   }
   void Image::fill(int x , int y , int w , int h , unsigned char r , unsigned char g , unsigned char b){
-    Color fill_with = {r,g,b};
     for (int x_pixel = x ; x_pixel < x + w ; x_pixel++){
             for ( int y_pixel = y ; y_pixel < y + h ; y_pixel++){
-                matrix [x_pixel][y_pixel] = fill_with;
+                matrix [x_pixel][y_pixel].fill(r,g,b);
             }
         }
   }
@@ -163,16 +157,12 @@ namespace prog
     matrix = temp_matrix;
   }
   void Image :: add(std::string filename, unsigned char r , unsigned char g , unsigned char b , int x , int y){
-    Color neutral_pixel = {r,g,b};
     int w, h, dummy;
     rgb_value *buffer = stbi_load(filename.c_str(), &w, &h, &dummy, 3);
     rgb_value* p = buffer;
     for (int new_image_y = y; new_image_y < y+h; new_image_y++) {
         for (int new_image_x = x; new_image_x < x+w; new_image_x++) {
-            Color pixel_to_add = {p[0],p[1],p[2]};
-            if(!( pixel_to_add == neutral_pixel)){
-            matrix[new_image_x][new_image_y] = pixel_to_add;
-            }
+            matrix[new_image_x][new_image_y].add(p,r,g,b);
             p += 3;
         }
     }
