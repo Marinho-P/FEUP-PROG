@@ -1,5 +1,5 @@
 # FEUP-PROG 2022/2023
-
+Final project in C++ for the PROG curricular unit.
 ## Project Infos
 
 - Date: 1st Year, 2nd Semester
